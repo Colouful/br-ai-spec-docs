@@ -1,0 +1,512 @@
+请只修改项目：
+
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform
+
+参考文档：
+
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.2-hub-production-foundation-plan.md
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.2-p3.2-write-transaction-switch-design.md
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.2-p3.3-asset-write-transaction-switch-report.md
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.2-p3.4-manifest-write-transaction-switch-report.md
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.2-p3.5-agent-profile-write-transaction-switch-report.md
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.2-p2-audit-log-persistence-report.md
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.1-acceptance-report.md
+
+当前阶段：
+
+V2.2 P3.6：Review Workflow 全局事务化。
+
+## 一、本轮目标
+
+本轮目标是把 P5 阶段的 Review Workflow 审核流程从历史内存路径升级为统一事务化路径。
+
+必须保证：
+
+1. Asset Version 的 submit-review / reject / publish 读写同源。
+2. Manifest Version 的 submit-review / reject / publish 读写同源。
+3. Agent Profile 的 submit-review / reject / publish 读写同源。
+4. 所有状态变更和 AuditLog 写入处于同一事务。
+5. `HUB_REPOSITORY_MODE=memory` 时读写都走 memory。
+6. `HUB_REPOSITORY_MODE=prisma` 时读写都走 Prisma。
+7. 不允许出现读 prisma、写 memory 的混用。
+8. 不允许 AuditLog 成功但业务状态失败。
+9. 不允许业务状态成功但 AuditLog 失败。
+10. 保持 V1.1 Hub API、V2.1 页面、P3.3、P3.4、P3.5 不被破坏。
+
+## 二、本轮只允许做
+
+1. 改造 ReviewWorkflowService，使其依赖 TransactionManager。
+2. 改造 ReviewWorkflowService，使其通过 Repository Port 更新状态。
+3. 支持 Asset Version submit-review / reject / publish 事务化。
+4. 支持 Manifest Version submit-review / reject / publish 事务化。
+5. 支持 Agent Profile submit-review / reject / publish 事务化。
+6. 保持 publish 逻辑复用 P3.3 / P3.4 / P3.5 已完成的领域发布服务，避免重复实现发布规则。
+7. submit-review 成功后写入 AuditLog。
+8. reject 成功后写入 AuditLog。
+9. publish 成功后写入 AuditLog；如果领域服务已写入 AuditLog，ReviewWorkflow 不得重复写入。
+10. 补齐 Review Workflow 相关 Repository Port 方法。
+11. 补齐 memory / prisma 双模式测试。
+12. 输出 P3.6 实施报告。
+
+## 三、本轮禁止行为
+
+1. 不要修改 br-ai-spec。
+2. 不要修改 br-ai-spec-visual。
+3. 不要开发 V2.3。
+4. 不要开发多技术栈资产体系。
+5. 不要开发 AI 工程资产生成器。
+6. 不要实现 OpenClaw。
+7. 不要实现钉钉机器人。
+8. 不要实现真实 Codex / Cursor / Claude Code 自动编码。
+9. 不要大规模重构 Asset / Manifest / Agent Profile 已完成的写事务。
+10. 不要修改 V1.1 Hub API 响应结构。
+11. 不要破坏 V2.1 页面。
+12. 不要放宽隐私校验。
+13. 不要放宽 checksum 校验。
+14. 不要放宽 published 不可变策略。
+15. 不要放宽 Agent Profile 安全策略。
+16. 不要安装依赖。
+17. 不要修改根目录 package.json。
+18. 不要自动提交 git。
+19. 不要自动 push。
+20. 不要自动 merge。
+
+## 四、是否允许修改 Prisma schema
+
+原则上不修改。
+
+如果当前 schema 没有 rejectedAt / rejectedReason / reviewSubmittedAt 等字段，不要为了 P3.6 强行补 schema。
+
+本轮可以采用兼容策略：
+
+1. 状态字段必须持久化。
+2. reason / note 可优先写入 AuditLog。
+3. rejectedReason 如果当前模型不存在，不强行入业务表。
+4. 后续生产化字段补齐单独开批次处理。
+
+如果确实发现事务化必需字段缺失，必须先停止并在报告中说明，不要直接大改 schema。
+
+## 五、必须复用的基础设施
+
+必须复用已有事务基础设施：
+
+```text
+src/server/hub/transactions/transaction-manager-port.ts
+src/server/hub/transactions/transaction-context.ts
+src/server/hub/transactions/memory-transaction-manager.ts
+src/server/hub/transactions/prisma-transaction-manager.ts
+src/server/hub/transactions/transaction-manager-provider.ts
+```
+
+要求：
+
+1. 不要另起一套事务体系。
+2. 不要在 service 中直接调用 Prisma Client。
+3. ReviewWorkflowService 必须通过 TransactionManager 执行。
+4. AuditLog 必须使用同一个事务上下文写入。
+5. 事务失败必须整体回滚。
+6. 所有错误提示中文。
+
+## 六、必须支持的 targetType
+
+Review Workflow 必须支持：
+
+```text
+asset-version
+manifest-version
+agent-profile
+```
+
+不支持的 targetType 必须返回中文错误：
+
+```text
+INVALID_REVIEW_TARGET_TYPE
+```
+
+不要静默忽略。
+
+## 七、状态流转规则
+
+必须保持 P5 规则：
+
+```text
+draft -> reviewing
+rejected -> reviewing
+reviewing -> rejected
+reviewing -> published
+published -> deprecated
+published -> archived
+deprecated -> archived
+```
+
+本轮重点实现：
+
+```text
+draft/rejected -> reviewing
+reviewing -> rejected
+reviewing -> published
+```
+
+要求：
+
+1. 只有 draft / rejected 可以 submit-review。
+2. 只有 reviewing 可以 reject。
+3. 只有 reviewing 可以通过审核发布。
+4. publish 是否继续兼容 draft 直接发布，按现有 P1/P2/P3 兼容策略保留；但 Review Workflow 主路径必须是 reviewing -> published。
+5. published / deprecated / archived 不允许 submit-review。
+6. archived 不允许任何审核流操作。
+7. reject 必须填写 reason。
+8. 所有非法状态必须返回中文错误。
+
+## 八、Repository Port 方法补齐
+
+请检查并按最小原则补齐。
+
+### AssetVersionRepositoryPort
+
+如缺少以下方法，请补齐：
+
+```ts
+submitAssetVersionReview(input): Promise<HubAssetVersionDetail>;
+rejectAssetVersionReview(input): Promise<HubAssetVersionDetail>;
+```
+
+要求：
+
+1. submit-review 只允许 draft / rejected。
+2. reject 只允许 reviewing。
+3. 不修改 checksum。
+4. 不修改 immutable。
+5. 不删除 content。
+6. 写 AuditLog 放在 ReviewWorkflowService 事务中完成。
+
+### ManifestVersionRepositoryPort
+
+如缺少以下方法，请补齐：
+
+```ts
+submitManifestVersionReview(input): Promise<HubManifestVersionDetail>;
+rejectManifestVersionReview(input): Promise<HubManifestVersionDetail>;
+```
+
+要求：
+
+1. submit-review 只允许 draft / rejected。
+2. reject 只允许 reviewing。
+3. 不修改 checksum。
+4. 不修改绑定关系。
+5. 不删除 Manifest 版本。
+6. 写 AuditLog 放在 ReviewWorkflowService 事务中完成。
+
+### AgentProfileRepositoryPort
+
+如缺少以下方法，请补齐：
+
+```ts
+submitAgentProfileReview(input): Promise<HubAgentProfileDetail>;
+rejectAgentProfileReview(input): Promise<HubAgentProfileDetail>;
+```
+
+要求：
+
+1. submit-review 只允许 draft / rejected。
+2. reject 只允许 reviewing。
+3. 不修改 checksum。
+4. 不修改 content。
+5. 不修改安全策略。
+6. 写 AuditLog 放在 ReviewWorkflowService 事务中完成。
+
+## 九、ReviewWorkflowService 改造要求
+
+请改造：
+
+```text
+src/server/hub/review-workflow-service.ts
+```
+
+要求：
+
+1. ReviewWorkflowService 支持注入 TransactionManager。
+2. ReviewWorkflowService 支持注入 AssetVersionService / ManifestVersionService / AgentProfileGovernanceService 用于 publish。
+3. submit-review 直接通过 tx repository 改状态并写 AuditLog。
+4. reject 直接通过 tx repository 改状态并写 AuditLog。
+5. publish 必须复用领域发布服务：
+   - asset-version -> AssetVersionService.publish
+   - manifest-version -> ManifestVersionService.publish
+   - agent-profile -> AgentProfileGovernanceService.publish
+6. 如果领域发布服务已经写 AuditLog，ReviewWorkflowService 不重复写。
+7. 如果 publish 由 ReviewWorkflowService 统一包事务，则必须避免嵌套事务导致测试不稳定。
+8. 不改变现有 route 请求和响应结构。
+9. 不改变 P5 页面调用方式。
+10. 不改变 ApiResponse 结构。
+
+## 十、AuditLog 写入规则
+
+submit-review 成功时写入：
+
+```ts
+{
+  targetType,
+  targetId,
+  action: "submit-review",
+  statusFrom: "draft" 或 "rejected",
+  statusTo: "reviewing",
+  operatorId: "system",
+  operatorName: "系统",
+  operatorType: "system",
+  note
+}
+```
+
+reject 成功时写入：
+
+```ts
+{
+  targetType,
+  targetId,
+  action: "reject",
+  statusFrom: "reviewing",
+  statusTo: "rejected",
+  operatorId: "system",
+  operatorName: "系统",
+  operatorType: "system",
+  reason
+}
+```
+
+publish 成功时：
+
+1. 如果领域发布服务已写入 `action=publish`，不要重复写。
+2. 如果领域服务未写入，则必须在同一事务内写入。
+3. 不允许一条 publish 操作产生重复 AuditLog。
+
+## 十一、API 兼容要求
+
+以下 API 必须保持兼容：
+
+```text
+POST /api/hub/admin/assets/:assetId/versions/:versionId/submit-review
+POST /api/hub/admin/assets/:assetId/versions/:versionId/reject
+POST /api/hub/admin/assets/:assetId/versions/:versionId/publish
+
+POST /api/hub/admin/manifests/:manifestId/versions/:versionId/submit-review
+POST /api/hub/admin/manifests/:manifestId/versions/:versionId/reject
+POST /api/hub/admin/manifests/:manifestId/versions/:versionId/publish
+
+POST /api/hub/admin/agent-profiles/:profileId/submit-review
+POST /api/hub/admin/agent-profiles/:profileId/reject
+POST /api/hub/admin/agent-profiles/:profileId/publish
+
+GET /api/hub/admin/audit-logs
+```
+
+以下 V1.1 API 必须保持兼容：
+
+```text
+POST /api/hub/manifests/recommend
+GET  /api/hub/manifests/:slug/export
+GET  /api/hub/assets/:slug/content
+GET  /api/hub/agent-profiles/:slug/export
+POST /api/hub/install-records
+POST /api/hub/runtime-feedback
+```
+
+要求：
+
+1. ApiResponse 结构不变。
+2. error 结构不变。
+3. pagination 结构不变。
+4. Manifest Export 结构不变。
+5. Asset Content 结构不变。
+6. Agent Profile Export 结构不变。
+7. br-ai-spec 契约不变。
+
+## 十二、隐私与安全要求
+
+AuditLog 和 ReviewWorkflow API 不允许保存或返回：
+
+```text
+sourceCode
+sourceContent
+fileContent
+rawPrompt
+rawResponse
+absolutePath
+/Users/
+.env
+apiKey
+password
+token
+secret
+```
+
+要求：
+
+1. note / reason / metadata 必须经过隐私检查。
+2. 发现敏感内容必须拒绝写入。
+3. 错误提示中文。
+4. 不允许静默清洗后继续写入。
+
+## 十三、测试要求
+
+请新增或完善测试：
+
+```text
+tests/unit/review-workflow/review-workflow-transaction-service.test.ts
+tests/unit/review-workflow/review-workflow-repository-mode.test.ts
+tests/unit/review-workflow/review-workflow-privacy.test.ts
+tests/integration/review-workflow-transaction-api.test.ts
+tests/integration/review-workflow-read-write-source.test.ts
+tests/integration/review-workflow-no-duplicate-audit.test.ts
+```
+
+至少覆盖：
+
+1. Asset Version submit-review memory 模式成功。
+2. Asset Version submit-review prisma 模式成功。
+3. Asset Version reject memory 模式成功。
+4. Asset Version reject prisma 模式成功。
+5. Asset Version publish 复用 AssetVersionService。
+6. Asset Version publish 不重复写 AuditLog。
+7. Manifest Version submit-review memory 模式成功。
+8. Manifest Version submit-review prisma 模式成功。
+9. Manifest Version reject memory 模式成功。
+10. Manifest Version reject prisma 模式成功。
+11. Manifest Version publish 复用 ManifestVersionService。
+12. Manifest Version publish 不重复写 AuditLog。
+13. Agent Profile submit-review memory 模式成功。
+14. Agent Profile submit-review prisma 模式成功。
+15. Agent Profile reject memory 模式成功。
+16. Agent Profile reject prisma 模式成功。
+17. Agent Profile publish 复用 AgentProfileGovernanceService。
+18. Agent Profile publish 不重复写 AuditLog。
+19. reject reason 为空时报错。
+20. published 不允许 submit-review。
+21. archived 不允许 submit-review。
+22. 非法 targetType 报中文错误。
+23. AuditLog 写入失败时状态回滚。
+24. 状态更新失败时 AuditLog 不写入。
+25. note 包含 sourceCode 时拒绝。
+26. reason 包含 rawPrompt 时拒绝。
+27. metadata 包含 `/Users/` 时拒绝。
+28. memory/prisma 模式读写同源。
+29. P3.3 Asset 写事务回归通过。
+30. P3.4 Manifest 写事务回归通过。
+31. P3.5 Agent Profile 写事务回归通过。
+32. V1.1 Hub 契约通过。
+33. br-ai-spec Hub 契约通过。
+34. npm test 通过。
+
+## 十四、必须执行命令
+
+请执行或等价执行：
+
+```bash
+cd /Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform
+
+git status --short
+
+npx prisma validate --schema prisma/schema.prisma
+
+npx vitest run tests/unit/review-workflow/review-workflow-transaction-service.test.ts
+npx vitest run tests/unit/review-workflow/review-workflow-repository-mode.test.ts
+npx vitest run tests/unit/review-workflow/review-workflow-privacy.test.ts
+npx vitest run tests/integration/review-workflow-transaction-api.test.ts
+npx vitest run tests/integration/review-workflow-read-write-source.test.ts
+npx vitest run tests/integration/review-workflow-no-duplicate-audit.test.ts
+
+npx vitest run tests/unit/repositories/agent-profile-write-repository-contract.test.ts
+npx vitest run tests/integration/agent-profile-write-transaction-api.test.ts
+npx vitest run tests/integration/agent-profile-publish-audit-transaction.test.ts
+
+npx vitest run tests/unit/repositories/manifest-write-repository-contract.test.ts
+npx vitest run tests/unit/repositories/manifest-version-write-repository-contract.test.ts
+npx vitest run tests/unit/repositories/manifest-asset-binding-write-repository-contract.test.ts
+npx vitest run tests/integration/manifest-write-transaction-api.test.ts
+npx vitest run tests/integration/manifest-publish-audit-transaction.test.ts
+
+npx vitest run tests/unit/repositories/asset-write-repository-contract.test.ts
+npx vitest run tests/unit/repositories/asset-version-write-repository-contract.test.ts
+npx vitest run tests/integration/asset-write-transaction-api.test.ts
+npx vitest run tests/integration/asset-publish-audit-transaction.test.ts
+
+npx vitest run tests/unit/query-services/asset-query-repository-mode.test.ts
+npx vitest run tests/unit/query-services/manifest-query-repository-mode.test.ts
+npx vitest run tests/unit/query-services/agent-profile-query-repository-mode.test.ts
+npx vitest run tests/integration/repository-mode-admin-query-api.test.ts
+
+npx vitest run tests/unit/repositories/audit-log-repository-contract.test.ts
+npx vitest run tests/unit/repositories/prisma-audit-log-repository.test.ts
+npx vitest run tests/integration/audit-log-api.test.ts
+npx vitest run tests/integration/review-workflow-audit-log.test.ts
+
+npx vitest run tests/integration/hub-contract.test.ts
+npx vitest run tests/integration/br-ai-spec-hub-contract.test.ts
+
+npm test
+npx next typegen
+./node_modules/.bin/tsc --noEmit
+npm run lint
+npm run build
+```
+
+不要新增依赖。
+
+## 十五、P3.6 实施报告
+
+请新增：
+
+```text
+/Users/lizhenwei/workspace/vueworkspace/bairong/skill-q-platform/docs/v2.2-p3.6-review-workflow-transaction-report.md
+```
+
+报告必须包含：
+
+1. P3.6 目标。
+2. 修改范围。
+3. ReviewWorkflowService 改造说明。
+4. submit-review 事务说明。
+5. reject 事务说明。
+6. publish 委托说明。
+7. Asset Version 审核事务说明。
+8. Manifest Version 审核事务说明。
+9. Agent Profile 审核事务说明。
+10. AuditLog 一致性说明。
+11. AuditLog 去重说明。
+12. memory 模式行为。
+13. prisma 模式行为。
+14. 是否修改 Prisma schema。
+15. 是否新增 migration。
+16. 是否修改 package.json。
+17. 是否影响 V1.1 Hub API。
+18. 是否影响 V2.1 页面。
+19. 是否影响 P3.3 Asset 写事务。
+20. 是否影响 P3.4 Manifest 写事务。
+21. 是否影响 P3.5 Agent Profile 写事务。
+22. 测试命令。
+23. 测试结果。
+24. 未完成项。
+25. 风险点。
+26. 是否可以进入 V2.2 P3.7 Prisma 模式真实开发库 smoke test。
+
+## 十六、完成后输出
+
+完成后请输出：
+
+1. 修改文件列表。
+2. 新增文件列表。
+3. ReviewWorkflow 是否已全局事务化。
+4. submit-review 是否事务化。
+5. reject 是否事务化。
+6. publish 是否复用领域服务。
+7. 是否避免重复 AuditLog。
+8. 是否支持 memory / prisma 双模式。
+9. 是否修改 Prisma schema。
+10. 是否新增 migration。
+11. 是否修改 package.json。
+12. 是否影响现有 Hub API。
+13. 是否影响 V2.1 页面。
+14. 测试命令。
+15. 测试结果。
+16. P3.6 报告路径。
+17. 是否可以进入 V2.2 P3.7。
