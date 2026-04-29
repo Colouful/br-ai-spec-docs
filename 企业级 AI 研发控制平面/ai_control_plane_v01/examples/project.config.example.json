@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "0.1.0",
+  "project": {
+    "name": "finance-middle-platform",
+    "type": "fullstack",
+    "businessDomain": "中台金融系统",
+    "riskProfile": "finance"
+  },
+  "repository": {
+    "defaultBranch": "develop",
+    "changeBranchPrefix": "ai/change/",
+    "taskBranchPrefix": "ai/task/"
+  },
+  "techStack": {
+    "frontend": {
+      "framework": "Vue",
+      "bundler": "Vite",
+      "state": "Vuex"
+    },
+    "backend": {
+      "framework": "Spring Boot"
+    },
+    "database": [
+      "MySQL"
+    ],
+    "cache": [
+      "Redis"
+    ],
+    "mq": [
+      "RabbitMQ 或 Kafka"
+    ]
+  },
+  "ideAdapters": [
+    "cursor",
+    "claude-code",
+    "codex"
+  ],
+  "openspec": {
+    "mode": "native",
+    "root": "openspec",
+    "readPolicy": "index-summary-detail"
+  },
+  "policies": {
+    "contextPolicy": ".ai-spec/context-policy.json",
+    "evidencePolicy": ".ai-spec/evidence-policy.json",
+    "worktreePolicy": "task-level-isolation"
+  }
+}

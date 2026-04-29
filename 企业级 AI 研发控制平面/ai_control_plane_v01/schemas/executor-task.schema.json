@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://br-ai-spec.local/schemas/executor-task.schema.json",
+  "title": "执行任务协议",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "taskId",
+    "title",
+    "taskType",
+    "riskLevel",
+    "agentType",
+    "dependsOn",
+    "readSet",
+    "writeSet",
+    "lockKeys",
+    "parallelizable",
+    "acceptanceRefs",
+    "testCommands"
+  ],
+  "properties": {
+    "taskId": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "taskType": {
+      "type": "string",
+      "enum": [
+        "contract",
+        "database",
+        "backend",
+        "frontend",
+        "test",
+        "security",
+        "docs",
+        "merge",
+        "repair"
+      ]
+    },
+    "riskLevel": {
+      "type": "string",
+      "enum": [
+        "L1",
+        "L2",
+        "L3"
+      ]
+    },
+    "agentType": {
+      "type": "string"
+    },
+    "dependsOn": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "readSet": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "writeSet": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lockKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parallelizable": {
+      "type": "boolean"
+    },
+    "requiresApproval": {
+      "type": "boolean"
+    },
+    "worktreeRequired": {
+      "type": "boolean"
+    },
+    "acceptanceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "testCommands": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "doneDefinition": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://br-ai-spec.local/schemas/project-config.schema.json",
+  "title": "项目配置协议",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "project",
+    "repository",
+    "ideAdapters",
+    "openspec",
+    "policies"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0",
+      "description": "协议版本。"
+    },
+    "project": {
+      "type": "object",
+      "description": "项目基础信息。",
+      "additionalProperties": true
+    },
+    "repository": {
+      "type": "object",
+      "description": "分支与仓库策略。",
+      "additionalProperties": true
+    },
+    "techStack": {
+      "type": "object",
+      "description": "项目技术栈。",
+      "additionalProperties": true
+    },
+    "ideAdapters": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "cursor",
+          "claude-code",
+          "codex",
+          "openclaw",
+          "custom"
+        ]
+      }
+    },
+    "openspec": {
+      "type": "object",
+      "description": "OpenSpec 配置。",
+      "additionalProperties": true
+    },
+    "policies": {
+      "type": "object",
+      "description": "策略文件路径。",
+      "additionalProperties": true
+    }
+  }
+}

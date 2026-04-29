@@ -1,0 +1,128 @@
+{
+  "dagId": "dag_product_config_001",
+  "changeId": "change_product_config",
+  "nodes": [
+    {
+      "taskId": "task_contract_api",
+      "title": "冻结产品配置 API 契约",
+      "description": "定义接口路径、入参、出参、状态枚举和错误码。",
+      "taskType": "contract",
+      "riskLevel": "L2",
+      "agentType": "architect",
+      "dependsOn": [],
+      "readSet": [
+        "openspec/changes/product-config/**"
+      ],
+      "writeSet": [
+        "openspec/changes/product-config/specs/api.md"
+      ],
+      "lockKeys": [
+        "api:/product-config"
+      ],
+      "parallelizable": false,
+      "requiresApproval": true,
+      "worktreeRequired": false,
+      "acceptanceRefs": [
+        "AC-API-001"
+      ],
+      "testCommands": [],
+      "doneDefinition": [
+        "API 字段已冻结",
+        "错误码已确认"
+      ]
+    },
+    {
+      "taskId": "task_backend_api",
+      "title": "实现产品配置后端接口",
+      "description": "实现 Controller、Service、Mapper 和基础单元测试。",
+      "taskType": "backend",
+      "riskLevel": "L2",
+      "agentType": "backend-executor",
+      "dependsOn": [
+        "task_contract_api",
+        "task_db_schema"
+      ],
+      "readSet": [
+        "backend/src/main/java/**"
+      ],
+      "writeSet": [
+        "backend/src/main/java/**/ProductConfig*.java"
+      ],
+      "lockKeys": [
+        "api:/product-config",
+        "module:backend-product-config"
+      ],
+      "parallelizable": true,
+      "requiresApproval": false,
+      "worktreeRequired": true,
+      "acceptanceRefs": [
+        "AC-BE-001",
+        "AC-BE-002"
+      ],
+      "testCommands": [
+        "mvn test -Dtest=ProductConfigServiceTest"
+      ],
+      "doneDefinition": [
+        "接口实现完成",
+        "单元测试通过"
+      ]
+    },
+    {
+      "taskId": "task_frontend_page",
+      "title": "实现产品配置前端页面",
+      "description": "实现列表、查询、新增、编辑、禁用和权限按钮。",
+      "taskType": "frontend",
+      "riskLevel": "L2",
+      "agentType": "frontend-executor",
+      "dependsOn": [
+        "task_contract_api"
+      ],
+      "readSet": [
+        "frontend/src/**"
+      ],
+      "writeSet": [
+        "frontend/src/views/product-config/**",
+        "frontend/src/store/modules/productConfig.js"
+      ],
+      "lockKeys": [
+        "route:/product-config",
+        "vuex:productConfig"
+      ],
+      "parallelizable": true,
+      "requiresApproval": false,
+      "worktreeRequired": true,
+      "acceptanceRefs": [
+        "AC-FE-001"
+      ],
+      "testCommands": [
+        "npm run test:unit -- product-config"
+      ],
+      "doneDefinition": [
+        "页面功能完成",
+        "基础测试通过"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "task_contract_api",
+      "to": "task_backend_api",
+      "type": "requires-contract"
+    },
+    {
+      "from": "task_contract_api",
+      "to": "task_frontend_page",
+      "type": "requires-contract"
+    }
+  ],
+  "parallelGroups": [
+    {
+      "groupId": "group_after_contract",
+      "taskIds": [
+        "task_backend_api",
+        "task_frontend_page"
+      ],
+      "reason": "API 契约冻结后，前后端可在不同 writeSet 和不同 worktree 中并行。"
+    }
+  ]
+}

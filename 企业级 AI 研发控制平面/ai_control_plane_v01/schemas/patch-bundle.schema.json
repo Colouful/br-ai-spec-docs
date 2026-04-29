@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://br-ai-spec.local/schemas/patch-bundle.schema.json",
+  "title": "补丁包协议",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "runId",
+    "taskId",
+    "agentId",
+    "branch",
+    "baseCommit",
+    "headCommit",
+    "files",
+    "evidenceRefs",
+    "status"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "runId": {
+      "type": "string"
+    },
+    "taskId": {
+      "type": "string"
+    },
+    "agentId": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "baseCommit": {
+      "type": "string"
+    },
+    "headCommit": {
+      "type": "string"
+    },
+    "diffPath": {
+      "type": "string"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "evidenceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

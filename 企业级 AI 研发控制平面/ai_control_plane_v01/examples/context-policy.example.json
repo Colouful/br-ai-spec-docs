@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "0.1.0",
+  "budget": {
+    "maxInputTokens": 60000,
+    "summaryThreshold": 40000,
+    "hardLimitTokens": 80000
+  },
+  "progressiveDisclosure": {
+    "levels": [
+      {
+        "level": "L0",
+        "name": "索引",
+        "allowedAssets": [
+          "manifest-index",
+          "openspec-index",
+          "capability-index"
+        ]
+      },
+      {
+        "level": "L1",
+        "name": "摘要",
+        "allowedAssets": [
+          "asset-summary",
+          "project-memory-summary"
+        ]
+      },
+      {
+        "level": "L2",
+        "name": "任务包",
+        "allowedAssets": [
+          "matched-rules",
+          "matched-skills",
+          "agent-profile-summary",
+          "openspec-view"
+        ]
+      },
+      {
+        "level": "L3",
+        "name": "实现细节",
+        "allowedAssets": [
+          "rule-detail",
+          "skill-detail",
+          "selected-source-files"
+        ]
+      },
+      {
+        "level": "L4",
+        "name": "示例和历史",
+        "allowedAssets": [
+          "examples",
+          "failure-cases",
+          "repair-history"
+        ]
+      }
+    ]
+  },
+  "compression": {
+    "triggers": [
+      "token-threshold",
+      "stage-transition",
+      "decision-made",
+      "test-failed",
+      "before-repair",
+      "before-archive"
+    ],
+    "mustKeep": [
+      "已确认事实",
+      "已冻结契约",
+      "禁止修改范围",
+      "失败原因",
+      "下一步动作",
+      "验收点"
+    ]
+  },
+  "retention": {
+    "successfulRunDays": 14,
+    "failedRunDays": 30,
+    "artifactDays": 7
+  }
+}

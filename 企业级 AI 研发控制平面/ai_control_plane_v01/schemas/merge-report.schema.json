@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://br-ai-spec.local/schemas/merge-report.schema.json",
+  "title": "合并报告协议",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "runId",
+    "changeBranch",
+    "mergedPatches",
+    "conflicts",
+    "status"
+  ],
+  "properties": {
+    "runId": {
+      "type": "string"
+    },
+    "changeBranch": {
+      "type": "string"
+    },
+    "mergedPatches": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "status": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://br-ai-spec.local/schemas/context-policy.schema.json",
+  "title": "上下文策略协议",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "budget",
+    "progressiveDisclosure",
+    "compression",
+    "retention"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "0.1.0"
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "progressiveDisclosure": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "compression": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "retention": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

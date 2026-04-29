@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://br-ai-spec.local/schemas/task-dag.schema.json",
+  "title": "任务有向无环图协议",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dagId",
+    "changeId",
+    "nodes",
+    "edges",
+    "parallelGroups"
+  ],
+  "properties": {
+    "dagId": {
+      "type": "string"
+    },
+    "changeId": {
+      "type": "string"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "executor-task.schema.json"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "parallelGroups": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    }
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://br-ai-spec.local/schemas/openspec-view.schema.json",
+  "title": "OpenSpec 任务视图协议",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "changeId",
+    "taskLevel",
+    "objective",
+    "affectedCapabilities",
+    "specDeltas",
+    "acceptanceCriteria",
+    "readBudget"
+  ],
+  "properties": {
+    "changeId": {
+      "type": "string"
+    },
+    "taskLevel": {
+      "type": "string",
+      "enum": [
+        "L1",
+        "L2",
+        "L3"
+      ]
+    },
+    "objective": {
+      "type": "string"
+    },
+    "affectedCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "specDeltas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true
+      }
+    },
+    "forbiddenScopes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredTests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "readBudget": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
