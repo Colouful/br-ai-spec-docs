@@ -1,0 +1,53 @@
+{
+  "name": "project-execution-docs",
+  "version": "1.0.0",
+  "purpose": "AI 可执行分阶段开发任务包",
+  "defaultAcceptanceStatus": "待执行",
+  "phases": [
+    {
+      "index": "00",
+      "name": "项目理解与基线确认",
+      "directory": "00-项目理解与基线确认"
+    },
+    {
+      "index": "01",
+      "name": "核心架构骨架调整",
+      "directory": "01-核心架构骨架调整"
+    },
+    {
+      "index": "02",
+      "name": "核心业务链路迁移",
+      "directory": "02-核心业务链路迁移"
+    },
+    {
+      "index": "03",
+      "name": "权限门禁与治理能力",
+      "directory": "03-权限门禁与治理能力"
+    },
+    {
+      "index": "04",
+      "name": "可靠性与可观测性",
+      "directory": "04-可靠性与可观测性"
+    },
+    {
+      "index": "05",
+      "name": "AI模型适配与扩展能力",
+      "directory": "05-AI模型适配与扩展能力"
+    },
+    {
+      "index": "06",
+      "name": "开发者体验与低入侵接入",
+      "directory": "06-开发者体验与低入侵接入"
+    },
+    {
+      "index": "07",
+      "name": "最终集成回归测试与验收",
+      "directory": "07-最终集成回归测试与验收"
+    }
+  ],
+  "rules": {
+    "forbidFakeTestResults": true,
+    "forbidScopeExpansion": true,
+    "requireStageAcceptanceBeforeNext": true
+  }
+}

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>企业级 AI 研发控制平面 - 参考资料文档列表</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h1 { 
+            text-align: center; 
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d9ff, #00ff88);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 40px;
+        }
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+        .section-title {
+            font-size: 1.2rem;
+            color: #00d9ff;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0,217,255,0.2);
+        }
+        .article-list {
+            display: grid;
+            gap: 12px;
+        }
+        .article-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .article-item:hover {
+            background: rgba(0,217,255,0.1);
+            transform: translateX(4px);
+        }
+        .article-num {
+            min-width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a1a2e;
+            font-size: 0.85rem;
+        }
+        .article-link {
+            flex: 1;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .article-link:hover {
+            color: #00d9ff;
+        }
+        .btn-save {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #00d9ff, #00ff88);
+            border: none;
+            border-radius: 8px;
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: transform 0.2s;
+        }
+        .btn-save:hover {
+            transform: scale(1.05);
+        }
+        .instructions {
+            background: rgba(255,193,7,0.1);
+            border: 1px solid rgba(255,193,7,0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .instructions h3 {
+            color: #ffc107;
+            margin-bottom: 12px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        .stats {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #888;
+        }
+        .stats span {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 企业级 AI 研发控制平面</h1>
+        <p class="subtitle">参考资料文档列表 | 来源：Colorful 分享</p>
+        
+        <div class="stats">
+            共 <span>69</span> 篇微信文章 | 
+            <a href="x-self-pdf://generate-all" style="color:#00d9ff;">一键生成全部PDF</a>
+        </div>
+        
+        <div class="instructions">
+            <h3>📋 保存为 PDF 方法</h3>
+            <ol>
+                <li>点击文章标题在新标签页中打开</li>
+                <li>按 <strong>Cmd + P</strong> 打开打印对话框</li>
+                <li>打印机选择「<strong>另存为 PDF</strong>」</li>
+                <li>布局选「横向」效果更佳</li>
+                <li>点击存储保存到目标文件夹</li>
+            </ol>
+        </div>
+
+        <!-- 一、Harness Engineering 核心系列 -->
+        <div class="section">
+            <h2 class="section-title">🏗️ Harness Engineering 核心系列 (11篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">01</span><a class="article-link" href="https://mp.weixin.qq.com/s/gs5ndvlMqM-Y4jg1_D2aFw" target="_blank">一文带你弄懂 AI 圈爆火的新概念：Harness Engineering</a></div>
+                <div class="article-item"><span class="article-num">02</span><a class="article-link" href="https://mp.weixin.qq.com/s/3qKvWajntkYLArH4ZShAhg" target="_blank">Harness 到底是什么？看看 OpenClaw、Hermes、Claude Code 的演绎吧</a></div>
+                <div class="article-item"><span class="article-num">03</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzIzNjE2NTI3NQ==&mid=2247491737&idx=1&sn=7540894e1d73a1cf20da8e34ba421634" target="_blank">深度解析：Harness Engineering</a></div>
+                <div class="article-item"><span class="article-num">04</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzI2NDU4OTExOQ==&mid=2247695294&idx=1&sn=63a246504edde73b337f15ad72bed3b1" target="_blank">一文讲透：Harness Engineering即控制论！</a></div>
+                <div class="article-item"><span class="article-num">05</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA3MjQyODkzOA==&mid=2448563920&idx=1&sn=94da4bd0f27dd31c20fc65aa6c858ad5" target="_blank">从Prompt到Harness：AI Agent四代工程化体系演进与三种智能体范式升级</a></div>
+                <div class="article-item"><span class="article-num">06</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=Mzg5ODkxNjkxMw==&mid=2247483876&idx=1&sn=105736f125ec1a08296142f4e50df7ec" target="_blank">Harness Engineering：生产级 AI Agent Runtime 的架构与设计原则</a></div>
+                <div class="article-item"><span class="article-num">07</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4NzgzMjA4MQ==&mid=2453482197&idx=1&sn=2116771a02c3c1f322532429daa1f0b6" target="_blank">Meta-Harness：斯坦福让 harness 实现自我改进</a></div>
+                <div class="article-item"><span class="article-num">08</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4NzgzMjA4MQ==&mid=2453483103&idx=1&sn=559d2c07cadcef99051c77e38e3cfe29" target="_blank">Anthropic 产品负责人：从 6 个月到 1 天的发版秘密，harness 会被模型当早餐吃掉</a></div>
+                <div class="article-item"><span class="article-num">09</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzkzNDkyNTQ5Ng==&mid=2247483687&idx=1&sn=fef1a688d1b222ca1792c1013d96b31a" target="_blank">AI编程范式：Spec与Vibe的演进与共生</a></div>
+                <div class="article-item"><span class="article-num">10</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzYzMTAxNTQ2Mg==&mid=2247483778&idx=1&sn=d63150d510f3e30fbc567e2f2342efa6" target="_blank">Harness 七层架构：模型外面那七层，才是 AI 好不好用的关键</a></div>
+                <div class="article-item"><span class="article-num">11</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzE5ODExMjI3Mw==&mid=2247487831&idx=1&sn=f4d5b3d7f4f94f07d0b8b84a69ff6f50" target="_blank">从零搭建多 Agent 编排框架：Agent Harness 动手实践</a></div>
+            </div>
+        </div>
+
+        <!-- 二、Hermes Agent 系列 -->
+        <div class="section">
+            <h2 class="section-title">🤖 Hermes Agent 系列 (6篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">12</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzkzNDkyNTQ5Ng==&mid=2247483677&idx=1&sn=e285d15f885ba90083878e2cc58b215a" target="_blank">Hermes Agent：自进化的全能个人智能体指南</a></div>
+                <div class="article-item"><span class="article-num">13</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzI2NDU4OTExOQ==&mid=2247695259&idx=1&sn=30ef327bcbbb3e349abd812da627c5f2" target="_blank">一文搞懂Hermes：新顶流Agent如何从经验中自我进化</a></div>
+                <div class="article-item"><span class="article-num">14</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzI2MDg3Njk0OA==&mid=2247489328&idx=1&sn=7d46f1791eb4e510fda0020849e9ee18" target="_blank">Hermes多 Agent 协同系统，效率直接翻倍！</a></div>
+                <div class="article-item"><span class="article-num">15</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&mid=2247559661&idx=1&sn=ca9426f948819f172ec44f671127aa29" target="_blank">深入源码：Hermes Agent 如何实现 "Self-Improving"</a></div>
+                <div class="article-item"><span class="article-num">16</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzAxOTUwMTY5Mw==&mid=2247484820&idx=1&sn=440d5c1718eb6efc7a6fdb90c78c7cf2" target="_blank">十张图看懂Harness和Hermes Agent</a></div>
+                <div class="article-item"><span class="article-num">17</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=Mzg3ODU0NDA2OA==&mid=2247485393&idx=1&sn=1ec35238386026af259796cf964a35f6" target="_blank">强烈推荐你用一下这个 hermes agent 的 web-ui，好玩又好看</a></div>
+            </div>
+        </div>
+
+        <!-- 三、Agent 架构与设计 -->
+        <div class="section">
+            <h2 class="section-title">🏛️ Agent 架构与设计 (9篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">18</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzkxOTQwMDgyOQ==&mid=2247488816&idx=1&sn=737d262ca227995e2e1beefd12ada8bf" target="_blank">AI 应用技术全景</a></div>
+                <div class="article-item"><span class="article-num">19</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzI4MTA0NzkxMA==&mid=2648896698&idx=1&sn=966f92bb4fa66268fc15cb82cc2a7fb3" target="_blank">深度解析三大 Agent 上下文工程：Claude Code、OpenClaw、Hermes 的设计哲学</a></div>
+                <div class="article-item"><span class="article-num">20</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzA3OTIwMDY0MQ==&mid=2247485174&idx=1&sn=c99811a6be03fdbfa45ea8cd16acfc9e" target="_blank">企业 AI 全景图，28个模块 + 5层全部搞定</a></div>
+                <div class="article-item"><span class="article-num">21</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=Mzg4MDYzNjM5OQ==&mid=2247489450&idx=1&sn=1e7784b89fdd84dc65e5cdc52307bfba" target="_blank">2026最新AI Agent（智能体）协议生态解析！</a></div>
+                <div class="article-item"><span class="article-num">22</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4Mzc5ODAwMA==&mid=2247490437&idx=1&sn=3b75734e1438cb64aaaf247aa9ac4943" target="_blank">一文详解产品经理必懂的7种AI Agent产品形态</a></div>
+                <div class="article-item"><span class="article-num">23</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzYzNTU4NzkyOA==&mid=2247484160&idx=1&sn=a33101d6d37ab3fae2a381daf499f1ea" target="_blank">学 Agent 没思路？5 种模式带你吃透架构</a></div>
+                <div class="article-item"><span class="article-num">24</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzUxMjYzMzMyNg==&mid=2247484211&idx=1&sn=f64e69f90008582d7efdbe448fce5021" target="_blank">真正Agent的极简骨架｜会自己动手查资料</a></div>
+                <div class="article-item"><span class="article-num">25</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzAxMzQyMzU5Nw==&mid=2454197363&idx=1&sn=84453bc2c1037546680b43574311d5bc" target="_blank">YAML定义Agent工作流</a></div>
+                <div class="article-item"><span class="article-num">26</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzE5ODQyNDY4OQ==&mid=2247484270&idx=1&sn=bfc5640a9c575404b6b154ccffe9ca87" target="_blank">ReAct 模式拆解：Agent 如何做到"边想边做"</a></div>
+            </div>
+        </div>
+
+        <!-- 四、Skill 设计模式 -->
+        <div class="section">
+            <h2 class="section-title">🛠️ Skill 设计模式 (8篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">27</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzkyNzcyMzcxOQ==&mid=2247484514&idx=1&sn=d53e155829db7a0307971d244562f7b6" target="_blank">官方推荐的5种Skill设计模式</a></div>
+                <div class="article-item"><span class="article-num">28</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzUyNTE2MDc1OA==&mid=2247485243&idx=1&sn=0ceba07c79448af5e75fc189aae5cf64" target="_blank">Skill 的机会不在单点，在编排：一种你可能还没想过的架构能力</a></div>
+                <div class="article-item"><span class="article-num">29</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=Mzg3NzI0MzAyNA==&mid=2247492815&idx=1&sn=0dccd0f6f990aadf43d069d167ca4ca9" target="_blank">写 SKILL.md 总是卡住？这 5 Skill 设计模式能救你</a></div>
+                <div class="article-item"><span class="article-num">30</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzkyNzcyMzcxOQ==&mid=2247484485&idx=1&sn=2aeba8624005336483915eab7df5b3d6" target="_blank">Skill做好了，怎么知道好不好用</a></div>
+                <div class="article-item"><span class="article-num">31</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=Mzg2MTYzNzM5OA==&mid=2247521315&idx=1&sn=88627c2fc11d8371b476e8ea75663b73" target="_blank">一个人公司 OPC 必备的 10 个Skill</a></div>
+                <div class="article-item"><span class="article-num">32</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzYyMjg1MDUxMw==&mid=2247485902&idx=1&sn=38947b5df0fd0ada79866b0c895d02c7" target="_blank">Agent Skills与Agent、MCP的区别及其原理</a></div>
+                <div class="article-item"><span class="article-num">33</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MjM5MjU0NzE3MQ==&mid=2247483854&idx=1&sn=769e1c5e542718508a5a91b1d5df54d4" target="_blank">skill+1</a></div>
+                <div class="article-item"><span class="article-num">34</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzIyNDU2NTc5Mw==&mid=2247523289&idx=1&sn=806fc13bce3840caf61aac285adf23c8" target="_blank">强烈推荐！这个 Skill 画架构图质量超高，一句话出图</a></div>
+            </div>
+        </div>
+
+        <!-- 五、Agent 记忆系统 -->
+        <div class="section">
+            <h2 class="section-title">🧠 Agent 记忆系统 (4篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">35</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzE5ODQyNDY4OQ==&mid=2247484317&idx=1&sn=dbe55a2dd9186d56f67d16dc7249d0e2" target="_blank">Agent 记忆系统设计：短期、长期到知识图谱</a></div>
+                <div class="article-item"><span class="article-num">36</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzYyNTQ1Njk5OA==&mid=2247486313&idx=1&sn=f63b54a0b448ddcf10cf769eef901b8c" target="_blank">小白必看：一图看懂Agent记忆模块如何设计</a></div>
+                <div class="article-item"><span class="article-num">37</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzIwMzA4Njg3Mg==&mid=2650332308&idx=1&sn=f65ed575a7376aaa29b369fd9fd4ae5b" target="_blank">Agent 记忆全景综述：20+顶尖机构联合出品，Agent memory看这一篇就够了</a></div>
+                <div class="article-item"><span class="article-num">38</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzIwMzA4Njg3Mg==&mid=2650332581&idx=1&sn=af809ac4a768be2baffb8b097b836b66" target="_blank">Agent 记忆长文总结：精选 23 篇记忆典型论文，帮你构建 Agent Memory 全局观</a></div>
+            </div>
+        </div>
+
+        <!-- 六、七到十二 -->
+        <div class="section">
+            <h2 class="section-title">🔄 Agent 自我改进与进化 (3篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">39</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4NzgzMjA4MQ==&mid=2453482421&idx=1&sn=7ae5ce79ba54a080ee02c814342763c9" target="_blank">Agent 自我改进的六条路</a></div>
+                <div class="article-item"><span class="article-num">40</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzIwMzA4Njg3Mg==&mid=2650332333&idx=1&sn=14820525b8dde9e688a35656d3ad464b" target="_blank">长文总结：近一年 Agent 自进化的两大方向和四大趋势</a></div>
+                <div class="article-item"><span class="article-num">41</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzI2NDU4OTExOQ==&mid=2247695386&idx=1&sn=7b4ec46bedf2b841680912d6be029a81" target="_blank">从第一性原理思考 Agentic Engineering</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">👥 多 Agent 与编排 (4篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">42</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzIxMjgxMTY0MQ==&mid=2247484049&idx=1&sn=24cbba6949dab1094821382e91c605b3" target="_blank">分享一个多agent的知识管理架构</a></div>
+                <div class="article-item"><span class="article-num">43</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzA3OTIwMDY0MQ==&mid=2247484873&idx=1&sn=c52d750f89df838c1cc7d6e9bba95c74" target="_blank">分享一套多 Agent 协同策略，希望你少踩坑</a></div>
+                <div class="article-item"><span class="article-num">44</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzYzMzQzMzIyNw==&mid=2247483681&idx=1&sn=3472db3b721f2dbcd2ec0d3b8454f92d" target="_blank">我在睡觉时，有16支AI团队替我把活干了</a></div>
+                <div class="article-item"><span class="article-num">45</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=Mzg2MzgwNzE4Mw==&mid=2247525693&idx=2&sn=88521927e35b47cbae4f911fe5c7f038" target="_blank">10 篇论文拆解 Skill + 自进化的技术路线</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🔌 MCP 相关 (2篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">46</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4NzgzMjA4MQ==&mid=2453483055&idx=1&sn=aca9f531006d4ae5c50feb6d4cc5229e" target="_blank">Anthropic 最新博客：MCP 没死，它又来了</a></div>
+                <div class="article-item"><span class="article-num">47</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzU4MzQxODEwMg==&mid=2247484371&idx=1&sn=74a047cf91fb0c58e2bdab20fe3cff40" target="_blank">AI智能体、Skill与MCP：现代AI系统的黄金三角</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">💻 Claude Code 与工具链 (4篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">48</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4NzgzMjA4MQ==&mid=2453483050&idx=1&sn=97efd72a35ab30ea62f505b660e96c87" target="_blank">Claude Code 推出 /ultrareview 超级审查功能，20 美金一次，10 分钟干完</a></div>
+                <div class="article-item"><span class="article-num">49</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4NzgzMjA4MQ==&mid=2453483005&idx=1&sn=c9f8f61c028246d79060eac3ae9a94e6" target="_blank">Claude Code 新增 Recap 功能，多开党必备神器</a></div>
+                <div class="article-item"><span class="article-num">50</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzY5NjE2Njc4NA==&mid=2247484579&idx=1&sn=b2c086aa7612ebc82b10616ce1f4a96c" target="_blank">900小时实战复盘「Claude Code的15个技巧」</a></div>
+                <div class="article-item"><span class="article-num">51</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzU3MjU5Mzc2Nw==&mid=2247489451&idx=1&sn=ea38ea3d9deb312fea0343e4a240acce" target="_blank">Image2 + MiniMax CLI，一句话到成片。拆解 MiniMax CLI 的Agent 设计哲学</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🧐 AI 思考与方法论 (5篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">52</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzA4NzgzMjA4MQ==&mid=2453483153&idx=1&sn=a6310e9a85f60c638e76130639004b80" target="_blank">给 AI 戴上六顶思考帽</a></div>
+                <div class="article-item"><span class="article-num">53</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzU4Mjg1NzcwNg==&mid=2247484973&idx=1&sn=67ec051c58d3082cdf0f73de42a2da38" target="_blank">AI 的价值：提升思考，而非取代思考</a></div>
+                <div class="article-item"><span class="article-num">54</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzUyNTg4ODk5Nw==&mid=2247483820&idx=1&sn=2ed984f654b9b07cc619468a5304caae" target="_blank">先定好规矩，AI才能真帮你干活🤯</a></div>
+                <div class="article-item"><span class="article-num">55</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzI5ODA4NDg3Mw==&mid=2247483936&idx=1&sn=9e73adaaf0237901b9dc9f8c946750f6" target="_blank">程序员三大流派</a></div>
+                <div class="article-item"><span class="article-num">56</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzU5Njg2ODM4NQ==&mid=2247483963&idx=1&sn=bf72c6ae87af2a85ea62f41469905b70" target="_blank">AI 的浏览器遥控器</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📋 产品与 PRD 相关 (3篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">57</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzU5NDQ1MjIxNg==&mid=2247492871&idx=1&sn=9337746c1949fd9b76e6f913953481c7" target="_blank">PRD 审查新利器：AI 辅助提升产品流程效率</a></div>
+                <div class="article-item"><span class="article-num">58</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzY5MTIxNDA0MQ==&mid=2247484184&idx=1&sn=50f938d312b849bf1a0a7d331d90eb08" target="_blank">实操手册：产品经理的Skills如何迭代？</a></div>
+                <div class="article-item"><span class="article-num">59</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=Mzk5MDYzMDkyMA==&mid=2247485215&idx=1&sn=9855c9c4856e74f4742398cf6410e849" target="_blank">写好需求文档，剩下的交给orchestrator</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🔧 架构与系统工程 (5篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">60</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzYzMTg5ODY4NQ==&mid=2247483869&idx=1&sn=7a916211435a07a3b3ad08450d490af9" target="_blank">🚀干货 一图拆解企业级AI Agent评估体系</a></div>
+                <div class="article-item"><span class="article-num">61</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzE5ODQyNDY4OQ==&mid=2247484887&idx=1&sn=b7f86e09a940ec61c40cb4f837df2a25" target="_blank">LangGraph 底层原理：它是怎么把 LLM 变成一台状态机的</a></div>
+                <div class="article-item"><span class="article-num">62</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzkxNjUxNjg0MA==&mid=2247484174&idx=1&sn=a41da0ecd07949fae20d753fd4b95765" target="_blank">架构师需要懂的知识 | 提示词工程、上下文工程、Harness工程...</a></div>
+                <div class="article-item"><span class="article-num">63</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzkxNjUxNjg0MA==&mid=2247484188&idx=1&sn=b4b1c0e50851cc3f9162278c7c3ecebb" target="_blank">为什么做了业务架构，还需要继续走向本体论（Ontology)、知识图谱</a></div>
+                <div class="article-item"><span class="article-num">64</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzY5NzE5MTQ3NA==&mid=2247484124&idx=3&sn=0f8418d5403c1ed27d6784caa55ca958" target="_blank">排产排不明白，谈什么精益生产？智能排产系统搭建全攻略来了</a></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📦 其他工具与资源 (4篇)</h2>
+            <div class="article-list">
+                <div class="article-item"><span class="article-num">65</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=Mzg3NzEzNzg2Ng==&mid=2247493771&idx=1&sn=0c60d42aaf84f03ba1004e34d9c6f36d" target="_blank">gstack：YC CEO开源的工具集</a></div>
+                <div class="article-item"><span class="article-num">66</span><a class="article-link" href="https://mp.weixin.qq.com/s?t=pages/image_detail&scene=1&__biz=MzUzMDU4MjQ0NA==&mid=2247486325&idx=1&sn=9b87cb5de481c0a7afb39c915d42a3a7" target="_blank">211个即插即用的中文AI专家</a></div>
+                <div class="article-item"><span class="article-num">67</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzI2NDU4OTExOQ==&mid=2247695194&idx=1&sn=030591ea76020210c5f06692fb30243f" target="_blank">自掏腰包一万元，拥抱AI这一年，我的工具、实践和思考</a></div>
+                <div class="article-item"><span class="article-num">68</span><a class="article-link" href="https://mp.weixin.qq.com/s?__biz=MzI2NDU4OTExOQ==&mid=2247695184&idx=1&sn=f48d917721d119b4634ca01619b8bcd8" target="_blank">办公Agent的CI/CD时刻到来了</a></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>📚 企业级 AI 研发控制平面 - 参考资料文档列表</p>
+            <p>生成时间：2026-04-29 | 来源：Colorful 分享</p>
+        </footer>
+    </div>
+</body>
+</html>
