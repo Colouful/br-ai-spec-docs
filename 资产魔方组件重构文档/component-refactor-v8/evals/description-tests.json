@@ -1,0 +1,21 @@
+{
+  "description": "Trigger and non-trigger test prompts for component-refactor.",
+  "should_trigger": [
+    "在 asset-cube-html 项目里把页面迁移成 page2，并新建 route2 注册到 router/index.js",
+    "src/views/disposalTool 已经迁移过一次，请参考未重构目录做 Page2 组件重构",
+    "根据本地 arco-design-vue packages web-vue components modal README 查 Modal 属性",
+    "修复迁移后的 bug，并记录问题类型和下次如何避免",
+    "Page2 有问题，修完后把根因和解决办法写入 bugfix-log",
+    "这个组件迁移 bug 下次怎么避免",
+    "修改完成后对修改文件进行 eslint 校验",
+    "根目录有 eslint 配置，每次 AI 改完代码要检查 lint",
+    "Page2 迁移后只 lint changed files",
+    "检查 skill 是否禁止修改业务逻辑",
+    "迁移前读取 bugfix-log 避免类似问题",
+    "遇到 Pro 组件问题先读 ex-ux-kit 源码和文档"
+  ],
+  "should_not_trigger": [
+    "帮我写一个后端数据库迁移脚本",
+    "优化这个 SQL 查询的索引"
+  ]
+}

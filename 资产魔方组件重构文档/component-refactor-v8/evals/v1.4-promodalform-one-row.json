@@ -1,0 +1,8 @@
+{
+  "name": "promodalform_popup_fields_one_row",
+  "prompt": "把编辑弹窗迁移到 ProModalForm，弹窗里的表单项必须独占一行，并且保留原来的校验和提交逻辑。",
+  "expected": {
+    "must_include": ["ProModalForm", "独占一行", "columns", "[1]", "takeFullRow", "校验", "提交逻辑"],
+    "must_not_include": ["两列布局", "修改字段名", "修改 payload", "修改 API 参数"]
+  }
+}

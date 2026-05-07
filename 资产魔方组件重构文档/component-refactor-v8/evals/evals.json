@@ -1,0 +1,115 @@
+[
+  {
+    "name": "local_project_page2_route2",
+    "prompt": "在 asset-cube-html 中把页面复制为 page2，并复制对应路由为 2，同时注册到 src/router/index.js。",
+    "expected": {
+      "must_include": [
+        "Page2",
+        "route2",
+        "src/router/modules",
+        "src/router/index.js",
+        "路径加2"
+      ],
+      "must_not_include": [
+        "只创建页面不改路由"
+      ]
+    }
+  },
+  {
+    "name": "disposal_tool_reference_warning",
+    "prompt": "迁移 src/views/disposalTool 下的页面，当前目录已经重构过一次，需要参考未重构分支目录。",
+    "expected": {
+      "must_include": [
+        "disposalTool",
+        "已经迁移",
+        "未重构",
+        "参考目录"
+      ],
+      "must_not_include": [
+        "直接使用当前目录作为历史逻辑"
+      ]
+    }
+  },
+  {
+    "name": "bugfix_learning_loop",
+    "prompt": "Page2 迁移后编辑弹窗有 bug，请修复，并记录问题类型、根因、解决办法、下次如何避免。",
+    "expected": {
+      "must_include": [
+        "问题类型",
+        "根因",
+        "修复",
+        "验证",
+        "下次如何避免",
+        "bugfix-log"
+      ],
+      "must_not_include": [
+        "只改代码不记录",
+        "修改原页面"
+      ]
+    }
+  },
+  {
+    "name": "changed_files_eslint_gate",
+    "prompt": "AI 修改 Page2 和路由文件后，需要对修改的文件进行 ESLint 校验，根目录有 eslint 配置。",
+    "expected": {
+      "must_include": [
+        "ESLint",
+        "修改的文件",
+        "check_changed_eslint.py",
+        "根目录配置",
+        "修复 lint"
+      ],
+      "must_not_include": [
+        "只等最后全量检查",
+        "忽略 eslint"
+      ]
+    }
+  },
+  {
+    "name": "no_business_logic_change_check",
+    "prompt": "检查最新版 skill 是否强制要求不能修改已有代码逻辑。",
+    "expected": {
+      "must_include": [
+        "不修改业务逻辑",
+        "API",
+        "store",
+        "permission",
+        "validation",
+        "Page1"
+      ],
+      "must_not_include": [
+        "可以顺手优化业务逻辑"
+      ]
+    }
+  },
+  {
+    "name": "bugfix_memory_pre_read",
+    "prompt": "开始新页面迁移前，先读取之前 bugfix-log 里的问题和避免方法，限制类似问题再次出现。",
+    "expected": {
+      "must_include": [
+        "bugfix-log",
+        "known-issues-prevention",
+        "预防规则",
+        "开始前读取"
+      ],
+      "must_not_include": [
+        "不读取历史问题"
+      ]
+    }
+  },
+  {
+    "name": "ex_ux_kit_docs_source_lookup",
+    "prompt": "ProModalForm 的属性不确定，先读取 ex-ux-kit 文档和源码，再修复。",
+    "expected": {
+      "must_include": [
+        "ex-ux-kit",
+        "packages/component/docs",
+        "packages/component/src",
+        "playground/arco"
+      ],
+      "must_not_include": [
+        "猜测 API"
+      ]
+    }
+  }
+]
