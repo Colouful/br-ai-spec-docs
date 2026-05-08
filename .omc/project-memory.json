@@ -1,0 +1,264 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1778217657553,
+  "projectRoot": "/Users/lizhenwei/Downloads/00download/docs",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "ai-spec-auto-优化--mvp": {
+      "path": "ai-spec-auto-优化--mvp",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1778217657519,
+      "keyFiles": [
+        "br-ai-spec-cli-ide-memory-optimization-plan.md"
+      ]
+    },
+    "br-ai-spec-history-docs": {
+      "path": "br-ai-spec-history-docs",
+      "purpose": null,
+      "fileCount": 14,
+      "lastAccessed": 1778217657520,
+      "keyFiles": [
+        "AI Coding时代，我们处在什么位置？.md",
+        "README.md",
+        "implementation-gap-analysis.md",
+        "install-guide.md",
+        "manifest-最小示例.md"
+      ]
+    },
+    "file-workspace": {
+      "path": "file-workspace",
+      "purpose": null,
+      "fileCount": 10,
+      "lastAccessed": 1778217657521,
+      "keyFiles": [
+        "00-文档索引.md",
+        "01-首页测试设计文档.md",
+        "02-首页测试用例清单.md",
+        "03-完整PRD文档（说明性版本）.md",
+        "04-系统架构设计文档.md"
+      ]
+    },
+    "files": {
+      "path": "files",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1778217657521,
+      "keyFiles": [
+        "11.png",
+        "br_ai_spec_首版prd_首页原型结构_试点路线图1.md",
+        "br_ai_spec_首版prd_首页原型结构_试点路线图2.md",
+        "br_ai_spec_首版prd_首页原型结构_试点路线图_end.md",
+        "enterprise-ai-control-plane-v0.1-architecture-review.md"
+      ]
+    },
+    "four-spec-visual-hub": {
+      "path": "four-spec-visual-hub",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1778217657522,
+      "keyFiles": [
+        "p.md"
+      ]
+    },
+    "hub-history-docs": {
+      "path": "hub-history-docs",
+      "purpose": null,
+      "fileCount": 17,
+      "lastAccessed": 1778217657522,
+      "keyFiles": [
+        "RULE.template.md",
+        "SKILL.md.template",
+        "agent-auth.md",
+        "api.md",
+        "deploy-checklist.md"
+      ]
+    },
+    "others": {
+      "path": "others",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1778217657522,
+      "keyFiles": [
+        "AI-Coding-Best-Practices-Guide.md",
+        "AI-Coding-Scenario-Quick-Reference.md"
+      ]
+    },
+    "visual-history-docs": {
+      "path": "visual-history-docs",
+      "purpose": null,
+      "fileCount": 11,
+      "lastAccessed": 1778217657522,
+      "keyFiles": [
+        "BR AI Spec Visual 部署指南.md",
+        "Collector使用指南.md",
+        "implementation-gap-analysis.md",
+        "p0-implementation-plan.md",
+        "与 br-ai-spec 协作与技术栈.md"
+      ]
+    },
+    "三仓规范可视化-文档包": {
+      "path": "三仓规范可视化-文档包",
+      "purpose": null,
+      "fileCount": 14,
+      "lastAccessed": 1778217657523,
+      "keyFiles": [
+        "01-产品需求PRD.md",
+        "02-三仓集成契约.md",
+        "03-清单数据模型与版本化.md",
+        "04-Hub-API契约.md",
+        "05-CLI命令设计.md"
+      ]
+    },
+    "二阶段-规范可视化-PRD与技术": {
+      "path": "二阶段-规范可视化-PRD与技术",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1778217657523,
+      "keyFiles": [
+        "BR规范可视化-PRD与技术_Codex版.md",
+        "br_ai_spec_visual_prd_tech_v2.docx"
+      ]
+    },
+    "企业级 AI 研发控制平面": {
+      "path": "企业级 AI 研发控制平面",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1778217657523,
+      "keyFiles": []
+    },
+    "四仓方案-工程化与团队文档": {
+      "path": "四仓方案-工程化与团队文档",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1778217657523,
+      "keyFiles": [
+        "AI工程化操作系统-方案总览.md"
+      ]
+    },
+    "扣子多智能测试实例": {
+      "path": "扣子多智能测试实例",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1778217657524,
+      "keyFiles": [
+        "CozeIMG.png"
+      ]
+    },
+    "扣子文档": {
+      "path": "扣子文档",
+      "purpose": null,
+      "fileCount": 16,
+      "lastAccessed": 1778217657524,
+      "keyFiles": [
+        "01-vibe_coding_agent.html",
+        "02-ai_powered_workflow_development.html",
+        "03-deploy_agent_as_api_service.html",
+        "04-vibe_coding_faq.html",
+        "05-api_call_methods_overview.html"
+      ]
+    },
+    "技术列表": {
+      "path": "技术列表",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1778217657524,
+      "keyFiles": [
+        "d.md",
+        "team-usage-events-1995465-2026-05-06.csv"
+      ]
+    },
+    "知识库文档": {
+      "path": "知识库文档",
+      "purpose": null,
+      "fileCount": 3,
+      "lastAccessed": 1778217657525,
+      "keyFiles": [
+        "ai-asset-factory-agent-final-prompt (1).md",
+        "ai-asset-factory-agent-final-prompt.md",
+        "hub-asset-json-contract.md"
+      ]
+    },
+    "第二大阶段": {
+      "path": "第二大阶段",
+      "purpose": null,
+      "fileCount": 7,
+      "lastAccessed": 1778217657525,
+      "keyFiles": [
+        "1-AI 工程资产操作系统：指令级 PRD 与技术蓝图.md",
+        "2-物理工程结构与目录树.md",
+        "3-核心数据模型与数据库设计.md",
+        "4-API 契约与核心接口定义.md",
+        "5-超详细的功能实现路线图.md"
+      ]
+    },
+    "资产分类+h后端+skill超详细prd+三个项目技术实现文档": {
+      "path": "资产分类+h后端+skill超详细prd+三个项目技术实现文档",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1778217657525,
+      "keyFiles": [
+        "PRD-资产工厂与多栈中枢.md",
+        "技术实现-BR-资产工厂-CLI.md",
+        "技术实现-技能平台-资产工厂.md",
+        "技术实现-规范可视化-资产治理.md"
+      ]
+    },
+    "资产魔方组件重构文档": {
+      "path": "资产魔方组件重构文档",
+      "purpose": null,
+      "fileCount": 2,
+      "lastAccessed": 1778217657526,
+      "keyFiles": [
+        "重构指令.md"
+      ]
+    },
+    "资料参考-0428": {
+      "path": "资料参考-0428",
+      "purpose": null,
+      "fileCount": 18,
+      "lastAccessed": 1778217657526,
+      "keyFiles": [
+        "(65 封私信) Harness Engineering 最佳实践：从概念到落地的完整操作手册 - 知乎.pdf",
+        "12.pdf",
+        "39eaf64d09c99fd4cba5e46e223de648.jpg",
+        "AI 工作流中的 Workflow、Graph 与 Loop：从概念到实现 _ JavaGuide.pdf",
+        "Claude Code 使用指南：配置、工作流与进阶技巧 _ JavaGuide.pdf"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "others/AI-Coding-Scenario-Quick-Reference.md",
+      "accessCount": 5,
+      "lastAccessed": 1778218269569,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}
